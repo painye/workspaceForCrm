@@ -6,11 +6,11 @@
   <display-name>Archetype Created Web Application</display-name>
   <servlet>
     <servlet-name>UserController</servlet-name>
-    <servlet-class>com.yp.crm.settings.web.contrller.UserController</servlet-class>
+    <servlet-class>com.yp.crm.settings.web.controller.UserController</servlet-class>
   </servlet>
 
   <servlet-mapping>
     <servlet-name>UserController</servlet-name>
-    <url-pattern>/settins/user.login.do</url-pattern>
+    <url-pattern>/settings/user/login.do</url-pattern>
   </servlet-mapping>
 </web-app>

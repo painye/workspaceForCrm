@@ -36,7 +36,7 @@ public class TransactionInvocationHandler implements InvocationHandler {
         try{
             sqlSession = SqlSessionUtil.getSqlSession();
             //实现目标类的方法
-            obj = method.invoke(args);
+            obj = method.invoke(target, args);
             //做功能增强,提交事务
             sqlSession.commit();
         }catch(Exception e){

@@ -67,7 +67,7 @@ request.getServerPort() + request.getContextPath() + "/";
 					if(data.success){
 						window.location.href="work/index.html";
 					}else{
-						$("#msg").html("data.msg");
+						$("#msg").html(data.msg);
 					}
 				}
 			})
