@@ -65,7 +65,7 @@ request.getServerPort() + request.getContextPath() + "/";
 					 */
 
 					if(data.success){
-						window.location.href="work/index.html";
+						window.location.href="workbench/index.html";
 					}else{
 						$("#msg").html(data.msg);
 					}
