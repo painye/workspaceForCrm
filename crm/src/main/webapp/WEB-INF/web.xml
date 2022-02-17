@@ -3,6 +3,8 @@
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
 
+
+  <!--中文编码过滤器-->
   <filter>
     <filter-name>EncodingFilter</filter-name>
     <filter-class>com.yp.crm.web.filter.EncodingFilter</filter-class>
@@ -12,6 +14,7 @@
     <url-pattern>*.do</url-pattern>
   </filter-mapping>
 
+  <!--登陆拦截器-->
   <filter>
     <filter-name>LoginFilter</filter-name>
     <filter-class>com.yp.crm.web.filter.LoginFilter</filter-class>
@@ -22,13 +25,23 @@
     <url-pattern>*.jsp</url-pattern>
   </filter-mapping>
 
+  <!--用户控制器-->
   <servlet>
     <servlet-name>UserController</servlet-name>
     <servlet-class>com.yp.crm.settings.web.controller.UserController</servlet-class>
   </servlet>
-
   <servlet-mapping>
     <servlet-name>UserController</servlet-name>
     <url-pattern>/settings/user/login.do</url-pattern>
+  </servlet-mapping>
+
+  <!--市场活动控制器-->
+  <servlet>
+    <servlet-name>ActivityController</servlet-name>
+    <servlet-class>com.yp.crm.workbench.web.controller.ActivityController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ActivityController</servlet-name>
+    <url-pattern>/workbench/activity/xxx.do</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -6,6 +6,10 @@
     <properties resource="jdbc.properties"/>
     <!--settings:控制myBatis全局行为-->
     <!--设置别名-->
+    <typeAliases>
+        <package name="com.yp.crm.settings.domain"/>
+        <package name="com.yp.crm.workbench.domain"/>
+    </typeAliases>
     <environments default="mysql">
         <environment id="mysql">
             <transactionManager type="JDBC"></transactionManager>
@@ -23,5 +27,6 @@
     <mappers>
         <!--name:是包名这个包中包含的mapper.xml能一次加载-->
         <package name="com.yp.crm.settings.dao"/>
+        <package name="com.yp.crm.workbench.dao"/>
     </mappers>
 </configuration>
