@@ -1,9 +1,10 @@
-
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!--弹幕小细节  EL表达式不可用的话 isELIgnored="false"-->
+<%@ page contentType="text/html;charset=UTF-8" isELIgnored="false" language="java" %>
 <%
 String basePath = request.getScheme() + "://" + request.getServerName() + ":" +
 request.getServerPort() + request.getContextPath() + "/";
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,7 +40,7 @@ request.getServerPort() + request.getContextPath() + "/";
 		});
 		
 		//页面加载完毕后完成工作台的加载
-		window.open("workbench/main/index.html","workareaFrame");
+		window.open("workbench/main/index.jsp","workareaFrame");
 		
 	});
 	
@@ -145,7 +146,7 @@ request.getServerPort() + request.getContextPath() + "/";
 			<ul>
 				<li class="dropdown user-dropdown">
 					<a href="javascript:void(0)" style="text-decoration: none; color: white;" class="dropdown-toggle" data-toggle="dropdown">
-						<span class="glyphicon glyphicon-user"></span> zhangsan <span class="caret"></span>
+						<span class="glyphicon glyphicon-user"></span> ${user.name} <span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
 						<li><a href="settings/index.html"><span class="glyphicon glyphicon-wrench"></span> 系统设置</a></li>
@@ -165,7 +166,7 @@ request.getServerPort() + request.getContextPath() + "/";
 		<div id="navigation" style="left: 0px; width: 18%; position: relative; height: 100%; overflow:auto;">
 		
 			<ul id="no1" class="nav nav-pills nav-stacked">
-				<li class="liClass"><a href="main/index.html" target="workareaFrame"><span class="glyphicon glyphicon-home"></span> 工作台</a></li>
+				<li class="liClass"><a href="main/index.jsp" target="workareaFrame"><span class="glyphicon glyphicon-home"></span> 工作台</a></li>
 				<li class="liClass"><a href="javascript:void(0);" target="workareaFrame"><span class="glyphicon glyphicon-tag"></span> 动态</a></li>
 				<li class="liClass"><a href="javascript:void(0);" target="workareaFrame"><span class="glyphicon glyphicon-time"></span> 审批</a></li>
 				<li class="liClass"><a href="javascript:void(0);" target="workareaFrame"><span class="glyphicon glyphicon-user"></span> 客户公海</a></li>
