@@ -21,7 +21,27 @@ request.getServerPort() + request.getContextPath() + "/";
 <script type="text/javascript">
 
 	$(function(){
-		
+
+		//利用走后台为模态窗口的下拉框获取数值
+		$.ajax({
+			url:"workbench/activity/getUserList.do",
+			data:{
+
+			},
+			dataType:"json",
+			type : "get",
+			success : function () {
+
+			}
+		})
+
+		//为添加模态窗口写js代码
+		/*
+			模态窗口的.model方法有两个参数show:打开模态窗口, hide:关闭模态窗口
+		 */
+		$("#addBtn").click(function(){
+			$("#createActivityModal").modal("show");
+		})
 		
 		
 	});
@@ -209,7 +229,7 @@ request.getServerPort() + request.getContextPath() + "/";
 			</div>
 			<div class="btn-toolbar" role="toolbar" style="background-color: #F7F7F7; height: 50px; position: relative;top: 5px;">
 				<div class="btn-group" style="position: relative; top: 18%;">
-				  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createActivityModal"><span class="glyphicon glyphicon-plus"></span> 创建</button>
+				  <button type="button" class="btn btn-primary" id="addBtn"><span class="glyphicon glyphicon-plus"></span> 创建</button>
 				  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#editActivityModal"><span class="glyphicon glyphicon-pencil"></span> 修改</button>
 				  <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-minus"></span> 删除</button>
 				</div>

@@ -13,6 +13,7 @@ import com.yp.crm.utils.DateTimeUtil;
 import com.yp.crm.utils.SqlSessionUtil;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -64,5 +65,12 @@ public class UserServiceImpl implements UserService {
 
 
         return user;
+    }
+
+    @Override
+    public List<User> getUserList() {
+        List<User> users = null;
+        users = userDao.getUserList();
+        return users;
     }
 }

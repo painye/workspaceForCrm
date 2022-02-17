@@ -4,11 +4,17 @@ package com.yp.crm.workbench.web.controller;
  * @date 2022/2/17 16:04
  */
 
+import com.yp.crm.settings.domain.User;
+import com.yp.crm.settings.service.UserService;
+import com.yp.crm.settings.service.impl.UserServiceImpl;
+import com.yp.crm.utils.TransactionInvocationHandler;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * @ClassName : com.yp.crm.workbench.web.controller.ActivityConmtroller
@@ -23,10 +29,18 @@ public class ActivityController extends HttpServlet {
 
         String path = request.getServletPath();
 
-        if("/workbench/activity/xxx.do".equals(path)){
+        if("/workbench/activity/getUserList.do".equals(path)){
+            getUserList(request, response);
 
         }else if("/workbench/activity/xxx.do".equals(path)){
 
         }
+    }
+
+    private void getUserList(HttpServletRequest request, HttpServletResponse response) {
+        //为service层创建代理
+        UserService us = (UserService) new TransactionInvocationHandler(new UserServiceImpl()).getProxy();
+        List<User> users =  us.getUserList();
+        System.out.println(users);
     }
 }

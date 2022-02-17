@@ -46,7 +46,10 @@ public class TransactionInvocationHandler implements InvocationHandler {
             //注意这里加入这个是为了防止目标类的异常被代理类捕获，所以需要再一次抛出已捕捉到的异常
             throw e.getCause();
         }finally {
-            SqlSessionUtil.myClose(sqlSession);
+            //因为这里的sqlsession是共享的，如果在登录时就将sqlsession关闭会导致出现错误
+            // org.apache.ibatis.executor.ExecutorException: Executor was closed.
+
+            //SqlSessionUtil.myClose(sqlSession);
         }
 
         return obj;
