@@ -35,6 +35,7 @@ public class PrintJson {
         try {
             //{"success":true}
             String json = om.writeValueAsString(map);
+            response.getWriter().print(json);
         } catch (JsonGenerationException e) {
             e.printStackTrace();
         } catch (JsonMappingException e) {
