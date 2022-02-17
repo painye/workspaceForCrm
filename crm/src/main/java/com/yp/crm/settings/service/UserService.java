@@ -1,7 +1,7 @@
 package com.yp.crm.settings.service;
 
 import com.yp.crm.settings.domain.User;
-import com.yp.crm.settings.exception.LoginException;
+import com.yp.crm.exception.LoginException;
 
 /**
  * @author pan

@@ -1,11 +1,11 @@
-package com.yp.crm.settings.exception;
+package com.yp.crm.exception;
 /**
  * @author pan
  * @date 2022/2/16 20:33
  */
 
 /**
- * @ClassName : com.yp.crm.settings.exception.LoginException
+ * @ClassName : com.yp.crm.exception.LoginException
  * @Description : 该类是表示登陆中出现的异常
  * @author pan
  * @date 2022/2/16 20:33

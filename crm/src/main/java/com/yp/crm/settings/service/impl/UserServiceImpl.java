@@ -7,7 +7,7 @@ package com.yp.crm.settings.service.impl;
 
 import com.yp.crm.settings.dao.UserDao;
 import com.yp.crm.settings.domain.User;
-import com.yp.crm.settings.exception.LoginException;
+import com.yp.crm.exception.LoginException;
 import com.yp.crm.settings.service.UserService;
 import com.yp.crm.utils.DateTimeUtil;
 import com.yp.crm.utils.SqlSessionUtil;
