@@ -43,6 +43,7 @@ public class TransactionInvocationHandler implements InvocationHandler {
             sqlSession.rollback();
             e.printStackTrace();
 
+            //注意这里加入这个是为了防止目标类的异常被代理类捕获，所以需要再一次抛出已捕捉到的异常
             throw e.getCause();
         }finally {
             SqlSessionUtil.myClose(sqlSession);
