@@ -31,6 +31,12 @@ public class LoginFilter implements Filter {
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
         HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
 
+        //如果当前servlet的路径是以下两种路径该拦截器需要进行放行
+        String servletPath = httpServletRequest.getServletPath();
+        if("/login.jsp".equals(servletPath) || "/settings/user/login.do".equals(servletPath)){
+            filterChain.doFilter(servletRequest, servletResponse);
+        }
+
         HttpSession session = httpServletRequest.getSession();
 
         User user = (User) session.getAttribute("user");
