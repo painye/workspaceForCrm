@@ -7,6 +7,8 @@ package com.yp.crm.workbench.web.controller;
 import com.yp.crm.settings.domain.User;
 import com.yp.crm.settings.service.UserService;
 import com.yp.crm.settings.service.impl.UserServiceImpl;
+import com.yp.crm.utils.PrintJson;
+import com.yp.crm.utils.ServiceFactory;
 import com.yp.crm.utils.TransactionInvocationHandler;
 
 import javax.servlet.ServletException;
@@ -39,8 +41,8 @@ public class ActivityController extends HttpServlet {
 
     private void getUserList(HttpServletRequest request, HttpServletResponse response) {
         //为service层创建代理
-        UserService us = (UserService) new TransactionInvocationHandler(new UserServiceImpl()).getProxy();
+        UserService us =(UserService) ServiceFactory.getService(new UserServiceImpl());
         List<User> users =  us.getUserList();
-        System.out.println(users);
+        PrintJson.printJsonObj(response, users);
     }
 }

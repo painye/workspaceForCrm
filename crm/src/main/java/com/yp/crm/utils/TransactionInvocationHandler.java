@@ -49,7 +49,7 @@ public class TransactionInvocationHandler implements InvocationHandler {
             //因为这里的sqlsession是共享的，如果在登录时就将sqlsession关闭会导致出现错误
             // org.apache.ibatis.executor.ExecutorException: Executor was closed.
 
-            //SqlSessionUtil.myClose(sqlSession);
+            SqlSessionUtil.myClose(sqlSession);
         }
 
         return obj;

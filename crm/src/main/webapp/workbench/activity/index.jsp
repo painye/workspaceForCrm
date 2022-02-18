@@ -22,28 +22,73 @@ request.getServerPort() + request.getContextPath() + "/";
 
 	$(function(){
 
-		//利用走后台为模态窗口的下拉框获取数值
-		$.ajax({
-			url:"workbench/activity/getUserList.do",
-			data:{
-
-			},
-			dataType:"json",
-			type : "get",
-			success : function () {
-
-			}
-		})
-
-		//为添加模态窗口写js代码
-		/*
-			模态窗口的.model方法有两个参数show:打开模态窗口, hide:关闭模态窗口
-		 */
 		$("#addBtn").click(function(){
+			//日历控件
+			$(".time").datetimepicker({
+				minView: "month",
+				language:  'zh-CN',
+				format: 'yyyy-mm-dd',
+				autoclose: true,
+				todayBtn: true,
+				pickerPosition: "bottom-left"
+			});
+
+
+			//alert("123");
+			//为添加模态窗口写js代码
+			/*
+                模态窗口的.model方法有两个参数show:打开模态窗口, hide:关闭模态窗口
+             */
+
+
 			$("#createActivityModal").modal("show");
-		})
-		
-		
+
+
+			//利用走后台为模态窗口的下拉框获取数值
+			$.ajax({
+				url:"workbench/activity/getUserList.do",
+				data:{
+
+				},
+				dataType:"json",
+				type : "get",
+				success : function (data) {
+					var html = "<option></option>";
+					$.each(data, function (i, n) {
+						html += "<option value='"+n.id+"'>"+n.name+"<option>";
+					})
+
+					$("#create-owner").html(html);
+
+					//取得当前用户的id，下拉框中默认选择当前用户
+
+					var id = "${user.id}";
+					$("#create-owner").val(id);
+				}
+			})
+		})//createBtn
+
+        $("#saveBtn").click(function(){
+            var owner = $("#create-owner").val();
+            var name = $("#create-name").val();
+            var startDate = $("#create-startDate").val();
+            var endDate = $("#create-endDate").val();
+            var cost = $("#create-cost").val();
+            var description = $("#create-description").val();
+
+            $.ajax({
+                url : "workbench/activity/save",
+                data: {"owner":owner, "name":name, "startDate":startDate, "endDate":endDate, "cost":cost,"description":description
+                },
+                dataType:"json",
+                type: "post",
+                success : function (data) {
+
+                }
+            })
+        })
+
+
 	});
 	
 </script>
@@ -65,28 +110,26 @@ request.getServerPort() + request.getContextPath() + "/";
 					<form class="form-horizontal" role="form">
 					
 						<div class="form-group">
-							<label for="create-marketActivityOwner" class="col-sm-2 control-label">所有者<span style="font-size: 15px; color: red;">*</span></label>
+							<label for="create-owner" class="col-sm-2 control-label">所有者<span style="font-size: 15px; color: red;">*</span></label>
 							<div class="col-sm-10" style="width: 300px;">
-								<select class="form-control" id="create-marketActivityOwner">
-								  <option>zhangsan</option>
-								  <option>lisi</option>
-								  <option>wangwu</option>
+								<select class="form-control" id="create-owner">
+
 								</select>
 							</div>
-                            <label for="create-marketActivityName" class="col-sm-2 control-label">名称<span style="font-size: 15px; color: red;">*</span></label>
+                            <label for="create-name" class="col-sm-2 control-label">名称<span style="font-size: 15px; color: red;">*</span></label>
                             <div class="col-sm-10" style="width: 300px;">
-                                <input type="text" class="form-control" id="create-marketActivityName">
+                                <input type="text" class="form-control" id="create-name">
                             </div>
 						</div>
 						
 						<div class="form-group">
-							<label for="create-startTime" class="col-sm-2 control-label">开始日期</label>
+							<label for="create-startDate" class="col-sm-2 control-label">开始日期</label>
 							<div class="col-sm-10" style="width: 300px;">
-								<input type="text" class="form-control" id="create-startTime">
+								<input type="text" class="form-control time" id="create-startDate">
 							</div>
-							<label for="create-endTime" class="col-sm-2 control-label">结束日期</label>
+							<label for="create-endDate" class="col-sm-2 control-label">结束日期</label>
 							<div class="col-sm-10" style="width: 300px;">
-								<input type="text" class="form-control" id="create-endTime">
+								<input type="text" class="form-control time" id="create-endDate">
 							</div>
 						</div>
                         <div class="form-group">
@@ -97,9 +140,9 @@ request.getServerPort() + request.getContextPath() + "/";
                             </div>
                         </div>
 						<div class="form-group">
-							<label for="create-describe" class="col-sm-2 control-label">描述</label>
+							<label for="create-description" class="col-sm-2 control-label">描述</label>
 							<div class="col-sm-10" style="width: 81%;">
-								<textarea class="form-control" rows="3" id="create-describe"></textarea>
+								<textarea class="form-control" rows="3" id="create-description"></textarea>
 							</div>
 						</div>
 						
@@ -107,8 +150,9 @@ request.getServerPort() + request.getContextPath() + "/";
 					
 				</div>
 				<div class="modal-footer">
+					<!--关闭模态窗口-->
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button type="button" class="btn btn-primary" data-dismiss="modal">保存</button>
+					<button type="button" class="btn btn-primary" id="saveBtn">保存</button>
 				</div>
 			</div>
 		</div>
